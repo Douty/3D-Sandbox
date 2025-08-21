@@ -36,7 +36,7 @@ void Engine::Core::Camera::CalculateDirection() {
 	const glm::vec3 worldUp(0.0f, 1.0f, 0.0f);
 
 	m_Right = glm::normalize(glm::cross(m_Forward, worldUp));
-	m_Up = glm::normalize(glm::cross(m_Forward, m_Right));
+	m_Up = glm::normalize(glm::cross(m_Right, m_Forward));
 }
 
 

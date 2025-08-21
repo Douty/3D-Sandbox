@@ -43,7 +43,7 @@ bool InputManager::IsKeyReleased(int key) const
 }
 bool InputManager::IsKeyHeld(int key) const
 {
-	return glfwGetKey(m_window, key) == GLFW_REPEAT;
+	return glfwGetKey(m_window, key) == GLFW_PRESS;
 }
 
 

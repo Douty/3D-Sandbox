@@ -10,36 +10,39 @@ FirstPersonController::FirstPersonController(Camera& camera, InputManager& input
 
 void FirstPersonController::Update(float deltaTime)
 {
-	m_Input.Update();
-	CameraMovement();
+	CameraMovement(deltaTime);
 	CameraMouseMovement(deltaTime);
-
 }
 
-void FirstPersonController::CameraMovement()
+void FirstPersonController::CameraMovement(float deltaTime)
 {
+    m_Camera.SetSpeed(2.5f);
+	const float step = m_Camera.GetSpeed() * deltaTime;
     // Instead of switching on the type itself, check each action using InputManager's methods
     if (m_Input.IsActionHeld(InputManager::m_ActionType::MoveForward)) {
-        std::cout << "Moving Forward" << std::endl;
-        m_Camera.SetPosition(m_Camera.GetPosition() + m_Camera.GetForward() * m_Camera.GetSpeed());
+      
+        m_Camera.SetPosition(m_Camera.GetPosition() + m_Camera.GetForward() * step);
     }
     // Add other movement directions as needed:
     if (m_Input.IsActionHeld(InputManager::m_ActionType::MoveBackward)) {
-        std::cout << "Moving backward" << std::endl;
-        m_Camera.SetPosition(m_Camera.GetPosition() - m_Camera.GetForward() * m_Camera.GetSpeed());
+      
+        m_Camera.SetPosition(m_Camera.GetPosition() - m_Camera.GetForward() * step);
     }
     if (m_Input.IsActionHeld(InputManager::m_ActionType::MoveLeft)) {
-        m_Camera.SetPosition(m_Camera.GetPosition() - m_Camera.GetRight() * m_Camera.GetSpeed());
+        m_Camera.SetPosition(m_Camera.GetPosition() - m_Camera.GetRight() * step);
     }
     if (m_Input.IsActionHeld(InputManager::m_ActionType::MoveRight)) {
-        m_Camera.SetPosition(m_Camera.GetPosition() + m_Camera.GetRight() * m_Camera.GetSpeed());
+        m_Camera.SetPosition(m_Camera.GetPosition() + m_Camera.GetRight() * step);
     }
     if (m_Input.IsActionHeld(InputManager::m_ActionType::MoveUp)) {
-        m_Camera.SetPosition(m_Camera.GetPosition() + m_Camera.GetUp() * m_Camera.GetSpeed());
+        m_Camera.SetPosition(m_Camera.GetPosition() + m_Camera.GetUp() * step);
     }
     if (m_Input.IsActionHeld(InputManager::m_ActionType::MoveDown)) {
-        m_Camera.SetPosition(m_Camera.GetPosition() - m_Camera.GetUp() * m_Camera.GetSpeed());
+        m_Camera.SetPosition(m_Camera.GetPosition() - m_Camera.GetUp() * step);
     }
+    if (m_Input.IsActionPressed(InputManager::m_ActionType::ExitGame)) {
+        glfwSetWindowShouldClose(m_Input.GetWindow(), true);
+	}
 }
 
 void FirstPersonController::CameraMouseMovement(float deltaTime)

@@ -15,7 +15,7 @@ namespace Engine::Core
 		void SetCamera(Camera& camera) { m_Camera = camera; }
 		void SetInputManager(InputManager& input) { m_Input = input; }
 
-		void CameraMovement();
+		void CameraMovement(float deltaTime);
 		void CameraMouseMovement(float deltaTime);
 		void CameraZoom(GLFWwindow* window, double xoffset, double yoffset);
 		

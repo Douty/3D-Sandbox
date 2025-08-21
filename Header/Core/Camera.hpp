@@ -48,7 +48,7 @@ namespace Engine::Core {
 		
 	private:
 		
-		float m_Speed = 0.0f;
+		float m_Speed = 2.5f;
 		float m_yaw = -90.0f;
 		float m_pitch = 0.0f;
 

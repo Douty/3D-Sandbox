@@ -23,8 +23,13 @@ Engine::Core::Window::Window(const std::string& title, int width, int height)
 		glfwTerminate();
 		throw std::runtime_error("Failed to initialize GLAD");
 	}
-	glfwSetWindowUserPointer(m_window, this);
 
+	int fbw, fbh;
+	glfwGetFramebufferSize(m_window, &fbw, &fbh);
+	glViewport(0, 0, fbw, fbh);
+
+	glfwSetWindowUserPointer(m_window, this);
+	glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetFramebufferSizeCallback(m_window, s_resizeCallback);
 }
 

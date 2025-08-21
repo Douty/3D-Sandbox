@@ -24,6 +24,7 @@ namespace Engine::Core {
 			MoveRight,
 			MoveUp,
 			MoveDown,
+			ExitGame,
 			Count
 		};
 
@@ -56,7 +57,8 @@ namespace Engine::Core {
 			{m_ActionType::MoveLeft, {GLFW_KEY_A, false, false}},
 			{m_ActionType::MoveRight, {GLFW_KEY_D, false, false}},
 			{m_ActionType::MoveUp, {GLFW_KEY_SPACE, false, false}},
-			{m_ActionType::MoveDown, {GLFW_KEY_LEFT_SHIFT, false, false}}
+			{m_ActionType::MoveDown, {GLFW_KEY_LEFT_SHIFT, false, false}},
+			{m_ActionType::ExitGame, {GLFW_KEY_ESCAPE, false, false}}
 		};
 
 	private:
