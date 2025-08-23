@@ -11,6 +11,7 @@ using namespace std;
 #include "Render/VAO.hpp"
 #include "Render/Shader.hpp"
 #include <Core/FirstPersonController.hpp>
+#include "Render/ModelLoading/Model.hpp"
 
 void APIENTRY DebugCallback(GLenum src, GLenum type, GLuint id, GLenum severity,
 	GLsizei length, const GLchar* message, const void* user) {
@@ -23,84 +24,33 @@ int main() {
 	int windowWidth = 1920;
 	int windowHeight = 1080;
 	
+
 	Engine::Core::Window window(windowTitle, windowWidth, windowHeight);
 
 	Engine::Core::InputManager inputManager(window.GetGLFWwindow());
 
-	
+	namespace Core = Engine::Core;
+	namespace Render = Engine::Render;
+
+
+
 	glEnable(GL_DEBUG_OUTPUT);
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS); // get messages immediately (easier to debug)
 	glDebugMessageCallback(DebugCallback, nullptr);
 
-	float vertices[] = {
-		// Front (z = +0.5)  – red
-		-0.5f,-0.5f, 0.5f,   1,0,0,
-		 0.5f,-0.5f, 0.5f,   1,0,0,
-		 0.5f, 0.5f, 0.5f,   1,0,0,
-		-0.5f, 0.5f, 0.5f,   1,0,0,
-
-		// Back (z = -0.5) – green
-		 0.5f,-0.5f,-0.5f,   0,1,0,
-		-0.5f,-0.5f,-0.5f,   0,1,0,
-		-0.5f, 0.5f,-0.5f,   0,1,0,
-		 0.5f, 0.5f,-0.5f,   0,1,0,
-
-		 // Left (x = -0.5) – blue
-		 -0.5f,-0.5f,-0.5f,   0,0,1,
-		 -0.5f,-0.5f, 0.5f,   0,0,1,
-		 -0.5f, 0.5f, 0.5f,   0,0,1,
-		 -0.5f, 0.5f,-0.5f,   0,0,1,
-
-		 // Right (x = +0.5) – yellow
-		  0.5f,-0.5f, 0.5f,   1,1,0,
-		  0.5f,-0.5f,-0.5f,   1,1,0,
-		  0.5f, 0.5f,-0.5f,   1,1,0,
-		  0.5f, 0.5f, 0.5f,   1,1,0,
-
-		  // Top (y = +0.5) – magenta
-		  -0.5f, 0.5f, 0.5f,   1,0,1,
-		   0.5f, 0.5f, 0.5f,   1,0,1,
-		   0.5f, 0.5f,-0.5f,   1,0,1,
-		  -0.5f, 0.5f,-0.5f,   1,0,1,
-
-		  // Bottom (y = -0.5) – cyan
-		  -0.5f,-0.5f,-0.5f,   0,1,1,
-		   0.5f,-0.5f,-0.5f,   0,1,1,
-		   0.5f,-0.5f, 0.5f,   0,1,1,
-		  -0.5f,-0.5f, 0.5f,   0,1,1,
-	};
-
-	unsigned int indices[] = {
-		// 6 faces * 2 tris * 3 = 36 indices
-		0,1,2,  2,3,0,      // front
-		4,5,6,  6,7,4,      // back
-		8,9,10, 10,11,8,    // left
-		12,13,14, 14,15,12, // right
-		16,17,18, 18,19,16, // top
-		20,21,22, 22,23,20  // bottom
-	};
-
-	Engine::Render::VAO vao;
-	Engine::Render::VBO vbo(vertices, sizeof(vertices));
-	Engine::Render::EBO ebo(indices, sizeof(indices),GL_STATIC_DRAW);
-	vao.LinkEBO(ebo.GetID());
-	vao.LinkAttrib(/*attribIndex*/0, /*bindingIndex*/0, vbo.GetID(),
-		/*size*/3, GL_FLOAT, GL_FALSE,
-		/*relativeOffset*/0,
-		/*stride*/6 * sizeof(float),
-		/*bindingOffset*/0);
-	 
-	vao.LinkAttrib(/*attribIndex*/1, /*bindingIndex*/0, vbo.GetID(),
-		/*size*/3, GL_FLOAT, GL_FALSE,
-		/*relativeOffset*/3 * sizeof(float),
-		/*stride*/6 * sizeof(float),
-		/*bindingOffset*/0);
 	
-	Engine::Render::Shader shader("Assets/Shaders/cube.vert", "Assets/Shaders/cube.frag");
+	Render::VAO vao;
+	
 
-	Engine::Core::Camera camera;
+	Render::Model Triangle ("Assets/Models/Triangle/triangle.obj");
+	Render::Model Sphere("Assets/Models/Sphere/sphere.obj");
+
+	Render::Shader shader("Assets/Shaders/cube.vert", "Assets/Shaders/cube.frag");
+	Render::Shader shader2("Assets/Shaders/shader2.vert", "Assets/Shaders/shader2.frag");
+
+	Core::Camera camera;
 	camera.UpdateProjectionMatrix(45.0f,static_cast<float>(window.GetWidth()),static_cast<float>(window.GetHeight()),0.1f, 100.0f);
-	Engine::Core::FirstPersonController controller(camera, inputManager);
+	Core::FirstPersonController controller(camera, inputManager);
 	
 	glEnable(GL_DEPTH_TEST);
 	double last = glfwGetTime();
@@ -133,11 +83,16 @@ int main() {
 		shader.SetMat4("model", model);
 		shader.SetMat4("view", view);
 		shader.SetMat4("projection", projection);
-			
 
+		shader2.SetMat4("model", model);
+		shader2.SetMat4("view", view);
+		shader2.SetMat4("projection", projection);
+		
+		Triangle.Draw(shader2);
+		Sphere.Draw(shader);
 		
 
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+	
 
 		window.SwapBuffers();
 	}

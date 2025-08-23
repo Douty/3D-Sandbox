@@ -138,10 +138,12 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Render\EBO.cpp" />
     <ClCompile Include="Source\Render\Shader.cpp" />
+    <ClCompile Include="Source\Render\Texture.cpp" />
     <ClCompile Include="Source\Render\VAO.cpp" />
     <ClCompile Include="Source\Render\VBO.cpp" />
     <ClCompile Include="Source\Core\Window.cpp" />
     <ClCompile Include="Source\Glad\glad.c" />
+    <ClCompile Include="Source\Stb_Image\stb_image_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Core\FirstPersonController.hpp" />
@@ -149,17 +151,30 @@
     <ClInclude Include="Header\Core\Window.hpp" />
     <ClInclude Include="Header\Core\Camera.hpp" />
     <ClInclude Include="Header\Render\EBO.hpp" />
+    <ClInclude Include="Header\Render\ModelLoading\Mesh.hpp" />
+    <ClInclude Include="Header\Render\ModelLoading\Model.hpp" />
     <ClInclude Include="Header\Render\Shader.hpp" />
+    <ClInclude Include="Header\Render\Texture.hpp" />
     <ClInclude Include="Header\Render\VAO.hpp">
       <DeploymentContent>false</DeploymentContent>
     </ClInclude>
     <ClInclude Include="Header\Render\VBO.hpp" />
     <ClInclude Include="Libraries\include\glad\glad.h" />
     <ClInclude Include="Libraries\include\stb_image.h" />
+    <ClCompile Include="Source\Render\ModelLoading\Mesh.cpp" />
+    <ClCompile Include="Source\Render\ModelLoading\Model.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Models\Sphere\sphere.mtl" />
+    <None Include="Assets\Models\Triangle\triangle.mtl" />
     <None Include="Assets\Shaders\cube.frag" />
     <None Include="Assets\Shaders\cube.vert" />
+    <None Include="Assets\Shaders\shader2.frag" />
+    <None Include="Assets\Shaders\shader2.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Assets\Models\Sphere\sphere.obj" />
+    <Object Include="Assets\Models\Triangle\triangle.obj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

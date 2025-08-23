@@ -10,7 +10,7 @@ Engine::Render::VBO::VBO()
 	glCreateBuffers(1, &m_ID);
 }
 
-Engine::Render::VBO::VBO(float* vertices, GLsizeiptr size) : VBO()
+Engine::Render::VBO::VBO(const void* vertices, GLsizeiptr size) : VBO()
 {
 	glNamedBufferData(m_ID, size, vertices, GL_STATIC_DRAW);
 }

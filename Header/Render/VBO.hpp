@@ -7,7 +7,7 @@ namespace Engine::Render
 	class VBO {
 	public:
 		VBO();
-		VBO(float* vertices, GLsizeiptr size);
+		VBO(const void* vertices, GLsizeiptr size);
 		~VBO();
 		VBO(const VBO&) = delete;
 		VBO& operator=(const VBO&) = delete;

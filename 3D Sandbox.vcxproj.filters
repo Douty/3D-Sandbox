@@ -45,6 +45,18 @@
     <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Render\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stb_Image\stb_image_impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Render\ModelLoading\Model.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Render\ModelLoading\Mesh.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Core\Window.hpp">
@@ -77,9 +89,26 @@
     <ClInclude Include="Header\Core\FirstPersonController.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Render\ModelLoading\Mesh.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Render\ModelLoading\Model.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Render\Texture.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\cube.frag" />
     <None Include="Assets\Shaders\cube.vert" />
+    <None Include="Assets\Shaders\shader2.vert" />
+    <None Include="Assets\Shaders\shader2.frag" />
+    <None Include="Assets\Models\Triangle\triangle.mtl" />
+    <None Include="Assets\Models\Sphere\sphere.mtl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Assets\Models\Triangle\triangle.obj" />
+    <Object Include="Assets\Models\Sphere\sphere.obj" />
   </ItemGroup>
 </Project>
