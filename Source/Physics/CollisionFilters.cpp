@@ -1,4 +1,4 @@
-// Physics/CollisionFilters.cpp
+
 #include "Physics/CollisionFilters.hpp"
 
 namespace Engine::Physics {

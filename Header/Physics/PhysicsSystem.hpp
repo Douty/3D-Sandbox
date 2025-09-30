@@ -45,7 +45,7 @@ namespace Engine::Physics {
 
     private:
 
-        JPH::PhysicsSystem m_physics; // the Jolt physics world
+        JPH::PhysicsSystem m_physics; 
         std::unique_ptr<JPH::TempAllocatorImpl>   m_tempAlloc;
         std::unique_ptr<JPH::JobSystemThreadPool> m_jobs;
         BPLayerInterface m_bp;

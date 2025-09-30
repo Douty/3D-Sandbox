@@ -3,7 +3,7 @@
 #include <Jolt/Jolt.h>
 #include <Jolt/Physics/Collision/ObjectLayer.h>
 #include <Jolt/Physics/Collision/BroadPhase/BroadPhaseLayer.h>
-#include "Physics/Layer.hpp" // for Layers and BPLayers
+#include "Physics/Layer.hpp" 
 
 namespace Engine::Physics {
 
