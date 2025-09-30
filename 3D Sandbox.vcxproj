@@ -132,10 +132,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Physics\CollisionFilters.cpp" />
     <ClCompile Include="Source\Core\FirstPersonController.cpp" />
     <ClCompile Include="Source\Core\InputManager.cpp" />
     <ClCompile Include="Source\Core\Camera.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Physics\BPLayerInterface.cpp" />
+    <ClCompile Include="Source\Physics\PhysicsSystem.cpp" />
     <ClCompile Include="Source\Render\EBO.cpp" />
     <ClCompile Include="Source\Render\Shader.cpp" />
     <ClCompile Include="Source\Render\Texture.cpp" />
@@ -150,6 +153,10 @@
     <ClInclude Include="Header\Core\InputManager.hpp" />
     <ClInclude Include="Header\Core\Window.hpp" />
     <ClInclude Include="Header\Core\Camera.hpp" />
+    <ClInclude Include="Header\Physics\BPLayerInterface.hpp" />
+    <ClInclude Include="Header\Physics\CollisionFilters.hpp" />
+    <ClInclude Include="Header\Physics\Layer.hpp" />
+    <ClInclude Include="Header\Physics\PhysicsSystem.hpp" />
     <ClInclude Include="Header\Render\EBO.hpp" />
     <ClInclude Include="Header\Render\ModelLoading\Mesh.hpp" />
     <ClInclude Include="Header\Render\ModelLoading\Model.hpp" />
